@@ -1,0 +1,52 @@
+{
+    "name": "rest-for-a-while",
+    "displayName": "RestWhile",
+    "description": "Rest for a while",
+    "version": "0.0.1",
+    "publisher": "jeffwang",
+    "engines": {
+        "vscode": "^1.10.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "*"
+    ],
+    "main": "./extension",
+    "contributes": {
+        "configuration": {
+            "title": "Rest for a while Configuration",
+            "properties": {
+                "rest.codingTime": {
+                    "type": "number",
+                    "default": 60,
+                    "description": "the time you have programed"
+                },
+                "rest.deadTime": {
+                    "type": "number",
+                    "default": 15,
+                    "description": "the time you have stopped"
+                }
+            }   
+        },
+        "commands":[
+            {
+                "command": "rest.showActiveTime",
+                "title": "Rest: ShowActiveTime"
+            }
+        ]
+    },
+    "scripts": {
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "eslint": "^3.6.0",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
+}
