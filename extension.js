@@ -32,9 +32,8 @@ class RestController {
     popTips(minutes) {
         let hours = Math.floor(minutes/60);
         minutes = minutes % 60;
-        window.showWarningMessage(`你已经编程超过
-        ${(hours === 0 ? "" : (hours+"小时"))}
-        ${minutes}分钟! 休息一会吧!`);
+        let tmp = hours === 0 ? "" : (hours+"小时");
+        window.showWarningMessage(`你已经编程超过${tmp}${minutes}分钟! 休息一会吧!`);
     }
 
     onPopTips() {

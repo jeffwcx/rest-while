@@ -2,10 +2,16 @@
     "name": "rest-for-a-while",
     "displayName": "RestWhile",
     "description": "Rest for a while",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "jeffwang",
     "engines": {
         "vscode": "^1.10.0"
+    },
+    "homepage": "https://github.com/jeffwcx/rest-while/blob/master/README.md",
+    "icon": "icon.png",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jeffwcx/rest-while.git"
     },
     "categories": [
         "Other"
