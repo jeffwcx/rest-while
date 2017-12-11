@@ -12,13 +12,13 @@ class RestController {
         this._nowTime = this._lastTime; // 上一次触发的时间
         this._continueTime = 0;
         this._nextTime = this._codingTime; // 预计下次提醒时间
-
         this._statusItem = window.createStatusBarItem(StatusBarAlignment.Left, 3);
-
         window.onDidChangeTextEditorSelection(this.onPopTips, this, subscriptions);
         window.onDidChangeActiveTextEditor(this.onPopTips, this, subscriptions);
         this._disposable = Disposable.from(...subscriptions);
-        
+        console.log(workspace.workspaceFolders)
+        console.log(workspace.name)
+
     }
 
     changeStatusBarItem(minutes) {
@@ -36,8 +36,8 @@ class RestController {
         window.showWarningMessage(`你已经编程超过${tmp}${minutes}分钟! 休息一会吧!`);
     }
 
-    onPopTips() {
-
+    onPopTips(event) {
+        console.log(event)
         this._lastTime = this._nowTime;
         this._nowTime = this._getCurrentTime();
         if(this._nowTime - this._lastTime >= this._deadTime ) {
@@ -52,7 +52,7 @@ class RestController {
         if(this._continueTime >= this._nextTime) {
             this._nextTime += this._codingTime;
             this.popTips(minutes);
-            
+
         }
     }
     getContinueTime() {
@@ -76,9 +76,9 @@ class RestController {
     initConfig() {
         this._config = workspace.getConfiguration(EXTENSIONNAME);
         if(!this._config) return;
-        this._codingTime = this._getConfigTime("codingTime");
+        this._codingTime = this._getConfigTime("interval");
         if(!this._codingTime) return;
-        this._deadTime = this._getConfigTime("deadTime");
+        this._deadTime = this._getConfigTime("departure");
         if(!this._deadTime) return;
     }
 
@@ -98,8 +98,8 @@ function activate(context) {
     // 用户配置更改时，初始化控制器的配置
     workspace.onDidChangeConfiguration(()=>
         controller.initConfig());
-    context.subscriptions.push(controller, 
-    commands.registerCommand('rest.showActiveTime', function(){
+    context.subscriptions.push(controller,
+    commands.registerCommand('rest.showContinousTime', function(){
         let m = controller._reverseTime(controller.getContinueTime(), false);
         window.showInformationMessage(`当前编程时长为: ${m}分钟`);
     }));

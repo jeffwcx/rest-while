@@ -1,0 +1,8 @@
+{
+  "statusItemCon": "Continuous Working Time: {0}",
+  "statusItemAcc": "Total Working Time: {0}",
+  "tip": "You have been working for {0}. You can go and have a cup of coffee.",
+  "hours": "hr",
+  "minutes": "min",
+  "less": "less than"
+}

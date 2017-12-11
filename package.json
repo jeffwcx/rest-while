@@ -1,58 +1,76 @@
 {
-    "name": "rest-for-a-while",
-    "displayName": "RestWhile",
-    "description": "Rest for a while",
-    "version": "0.0.2",
-    "publisher": "jeffwang",
-    "engines": {
-        "vscode": "^1.10.0"
-    },
-    "homepage": "https://github.com/jeffwcx/rest-while/blob/master/README.md",
-    "icon": "icon.png",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/jeffwcx/rest-while.git"
-    },
-    "categories": [
-        "Other"
-    ],
-    "activationEvents": [
-        "*"
-    ],
-    "main": "./extension",
-    "contributes": {
-        "configuration": {
-            "title": "Rest for a while Configuration",
-            "properties": {
-                "rest.codingTime": {
-                    "type": "number",
-                    "default": 60,
-                    "description": "the time you have programed"
-                },
-                "rest.deadTime": {
-                    "type": "number",
-                    "default": 15,
-                    "description": "the time you have stopped"
-                }
-            }   
+  "name": "rest-for-a-while",
+  "displayName": "RestWhile",
+  "description": "Rest for a while",
+  "version": "0.0.5",
+  "publisher": "jeffwong",
+  "engines": {
+    "vscode": "^1.10.0"
+  },
+  "homepage": "https://github.com/jeffwcx/rest-while/blob/master/README.md",
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeffwcx/rest-while.git"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./src/index",
+  "contributes": {
+    "configuration": {
+      "title": "Rest for a while Configuration",
+      "properties": {
+        "rest.interval": {
+          "type": "number",
+          "default": 60,
+          "description": "Time to show tips for you!"
         },
-        "commands":[
-            {
-                "command": "rest.showActiveTime",
-                "title": "Rest: ShowActiveTime"
-            }
-        ]
+        "rest.departure": {
+          "type": "number",
+          "default": 10,
+          "description": "If you do not work in editor for such a long time, your continous work time will return to zero!"
+        },
+        "rest.locale": {
+          "type": "string",
+          "default": "en",
+          "description": "en or zh"
+        },
+        "rest.isShowTips": {
+          "type": "boolean",
+          "default": true,
+          "description": "Some people may not like to be prompted to disturb."
+        }
+      }
     },
-    "scripts": {
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "eslint": "^3.6.0",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
-    }
+    "commands": [
+      {
+        "command": "rest.showContinuousTime",
+        "title": "Rest:showContinuousTime"
+      },
+      {
+        "command": "rest.showAccumulatedTime",
+        "title": "Rest:showAccumulatedTime"
+      }
+    ]
+  },
+  "scripts": {
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^2.2.32",
+    "@types/node": "^6.0.40",
+    "eslint": "^3.6.0",
+    "mocha": "^2.3.3",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  },
+  "license": "MIT"
 }
