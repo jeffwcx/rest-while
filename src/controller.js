@@ -81,6 +81,7 @@ class RestController {
     let conTime
     if (currentTime - lastTime > this._departure) {
       this.startTime = currentTime
+      this.remindTime = currentTime + this._interval
       conTime = 0
     } else {
       conTime = currentTime - this.startTime
